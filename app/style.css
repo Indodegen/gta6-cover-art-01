@@ -1,0 +1,93 @@
+/* SPDX-License-Identifier: MIT */
+/* Neon Coast Cover Studio — editor chrome. Dark neon UI, sunset accents. */
+:root {
+  --bg: #0b0626;
+  --panel: #171033;
+  --panel-2: #1f1550;
+  --ink: #f5f0ff;
+  --muted: #b9aede;
+  --pink: #ff2d78;
+  --orange: #ff7a18;
+  --teal: #00e5ff;
+  --line: #3a2a72;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg, #150a3d 0%, var(--bg) 45%, #12041f 100%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+.topbar {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(11, 6, 38, 0.85);
+  border-bottom: 3px solid var(--pink);
+}
+.brand { display: flex; gap: 12px; align-items: center; }
+.brand-mark {
+  width: 46px; height: 46px; border-radius: 10px; display: grid; place-items: center;
+  font-weight: 900; font-size: 20px; color: #fff;
+  background: linear-gradient(135deg, var(--orange), var(--pink) 55%, #7b2fff);
+  box-shadow: 0 0 18px rgba(255, 45, 120, 0.55);
+}
+.brand h1 { margin: 0; font-size: 21px; letter-spacing: 0.4px; }
+.brand p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.top-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+button {
+  font: inherit; cursor: pointer; color: var(--ink);
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 9px;
+  padding: 9px 14px;
+}
+button:hover { border-color: var(--pink); }
+button:disabled { opacity: 0.45; cursor: default; }
+button.primary {
+  background: linear-gradient(135deg, var(--orange), var(--pink));
+  border: none; font-weight: 800; color: #fff; padding: 11px 18px;
+}
+.layout {
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: 18px; padding: 18px 20px 28px; max-width: 1280px; margin: 0 auto;
+}
+.preview-pane { min-width: 0; }
+.preview-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.preview-head h2, .card h2 { margin: 0 0 10px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+#sizeLabel { color: var(--muted); font-size: 13px; }
+#preview {
+  width: 100%; max-width: 640px; height: auto; display: block; margin: 0 auto;
+  border: 3px solid #fff; border-radius: 6px; background: #000; cursor: grab;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(255, 45, 120, 0.18);
+  touch-action: none;
+}
+#preview:active { cursor: grabbing; }
+.hint { color: var(--muted); font-size: 13px; text-align: center; }
+.export-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+#exportStatus { color: var(--teal); font-size: 13px; }
+.controls { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px;
+}
+.card label { display: block; margin: 10px 0 4px; font-size: 13px; color: var(--muted); }
+.card input[type="text"], .card select {
+  width: 100%; margin-top: 4px; padding: 9px 10px; border-radius: 8px;
+  border: 1px solid var(--line); background: #0e0828; color: var(--ink); font: inherit;
+}
+.card input[type="range"] { width: 100%; accent-color: var(--pink); }
+.card .check { display: flex; gap: 8px; align-items: center; color: var(--ink); }
+.card .check input { accent-color: var(--pink); width: 16px; height: 16px; }
+.note { color: var(--muted); font-size: 13px; margin: 6px 0; }
+.upload {
+  display: block; text-align: center; padding: 12px; border: 2px dashed var(--pink);
+  border-radius: 10px; cursor: pointer; color: var(--ink); font-weight: 700;
+}
+.upload input { display: none; }
+.picker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.picker-grid button { padding: 10px 8px; font-size: 13px; text-align: center; }
+.picker-grid button.active { outline: 3px solid var(--teal); border-color: var(--teal); }
+.picker-grid.grades button { color: #fff; font-weight: 800; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); border: none; }
+.hidden-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.fineprint { color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+}

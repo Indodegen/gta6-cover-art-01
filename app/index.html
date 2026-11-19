@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: MIT -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover art maker</title>
+<meta name="description" content="Turn any photo and caption into multi-panel GTA-poster-style cover art, offline in your browser. Export 1080x1080, 1080x1350 and 1920x1080 PNGs.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">NC</span><div><h1>Neon Coast Cover Studio</h1><p>Multi-panel poster covers · 100% offline · your photos never leave this machine</p></div></div>
+  <div class="top-actions">
+    <button id="randomBtn" type="button">🎲 Surprise me</button>
+    <button id="undoBtn" type="button" disabled>↩ Undo</button>
+    <button id="redoBtn" type="button" disabled>↪ Redo</button>
+  </div>
+</header>
+<main class="layout">
+  <section class="preview-pane" aria-label="Live cover preview">
+    <div class="preview-head"><h2>Live preview</h2><span id="sizeLabel">Square 1080 x 1080</span></div>
+    <canvas id="preview" width="560" height="560" aria-label="Cover preview. Click a panel to select it, drag to move the photo, scroll to zoom."></canvas>
+    <p class="hint">Click a panel to select it · drag the photo to move it · scroll to zoom · Ctrl+Z undo · Ctrl+S export</p>
+    <div class="export-row">
+      <button id="exportBtn" type="button" class="primary">⬇ Export PNG</button>
+      <button id="exportAllBtn" type="button">⬇ Export all 3 sizes</button>
+      <span id="exportStatus" role="status"></span>
+    </div>
+  </section>
+  <aside class="controls" aria-label="Cover controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <label class="upload">📷 Add your photos<input id="uploadInput" type="file" accept="image/*" multiple></label>
+      <p class="note">Or use the two free sample photos. Nothing is uploaded — files are read on your machine only.</p>
+      <label>Panel photo <select id="photoSelect">
+        <option value="boulevard">Sample — Boulevard</option>
+        <option value="pier">Sample — Pier</option>
+      </select></label>
+      <p id="panelLabel" class="note">Panel 1 — boulevard</p>
+      <label>Zoom <span id="zoomValue">115%</span><input id="zoomInput" type="range" min="0.6" max="3" step="0.05" value="1.15"></label>
+    </section>
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div id="layoutGrid" class="picker-grid"></div>
+      <label class="hidden-label">Layout <select id="layoutSelect">
+        <option value="viceGrid">Vice Grid</option>
+        <option value="heroThree">Hero + Three</option>
+        <option value="tilted">Tilted Snapshots</option>
+        <option value="fullBleed">Full Bleed</option>
+        <option value="duoSplit">Duo Split</option>
+        <option value="triptych">Triptych</option>
+      </select></label>
+    </section>
+    <section class="card">
+      <h2>3 · Sunset grade</h2>
+      <div id="gradeGrid" class="picker-grid grades"></div>
+      <label class="hidden-label">Grade <select id="gradeSelect">
+        <option value="viceSunset">Vice Sunset</option>
+        <option value="neonNight">Neon Night</option>
+        <option value="palmGold">Palm Gold</option>
+        <option value="tealNoir">Teal Noir</option>
+        <option value="bubblegum">Bubblegum</option>
+        <option value="monoNoir">Mono Noir</option>
+      </select></label>
+    </section>
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label>Title <input id="titleInput" type="text" value="NEON COAST" maxlength="24"></label>
+      <label>Subtitle <input id="subtitleInput" type="text" value="welcome to paradise" maxlength="48"></label>
+      <label>Badge ribbon <input id="badgeInput" type="text" value="VICE CITY • 2026" maxlength="24"></label>
+      <label>Heat meter <span id="heatValue">4 / 5</span><input id="heatInput" type="range" min="0" max="5" step="1" value="4"></label>
+    </section>
+    <section class="card">
+      <h2>5 · Finish &amp; size</h2>
+      <label>Export size <select id="sizeSelect">
+        <option value="square">Square 1080 x 1080</option>
+        <option value="portrait">Portrait 1080 x 1350</option>
+        <option value="wide">Wide 1920 x 1080</option>
+      </select></label>
+      <label class="check"><input id="grainCheck" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignetteCheck" type="checkbox" checked> Vignette</label>
+      <label class="check"><input id="halftoneCheck" type="checkbox" checked> Halftone title dots</label>
+      <label class="check"><input id="frameCheck" type="checkbox" checked> White panel frames</label>
+    </section>
+    <p class="fineprint">Original art made by this app. No Rockstar Games logo, artwork or font is used. Sample photos were made with an image model for make.fun and are free to use.</p>
+  </aside>
+</main>
+<script type="module" src="src/main.js"></script>
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>
